@@ -7,29 +7,66 @@ public class CreditCard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private int number;
+    private int balance;
+    private int limit;
+
+    @OneToOne(cascade = {CascadeType.PERSIST})
+    public Pincode pincode;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bank")
+    private Bank bank;
+
+
+    public CreditCard() {}
 
     public int getNumber() {
-        // TODO: implement method!
-        return 0;
+        return number;
     }
 
-    public String getBalance() {
-        // TODO: implement method!
-        return null;
+
+    public Long getId() {
+        return id;
     }
 
-    public String getLimit() {
-        // TODO: implement method!
-        return null;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public int getLimit() {
+        return limit;
     }
 
     public Pincode getPincode() {
-        // TODO: implement method!
-        return null;
+        return pincode;
+    }
+
+    public void setPincode(Pincode pincode) {
+        this.pincode = pincode;
     }
 
     public Bank getOwningBank() {
-        // TODO: implement method!
-        return null;
+        return bank;
+    }
+
+    public void setBank(Bank bank) {
+        this.bank = bank;
     }
 }
